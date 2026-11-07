@@ -9,7 +9,6 @@ import lombok.ToString;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 @Entity
 @Table(name = "Review")
@@ -42,22 +41,43 @@ public class ReviewEntity {
 
     @ElementCollection
     @CollectionTable(
-            name = "review_ratings",
+            name = "positive_review_ratings",
             joinColumns = {
                     @JoinColumn(
-                            name = "review_place_id",
+                            name = "positive_review_place_id",
                             referencedColumnName = "place_id"
                     ),
                     @JoinColumn(
-                            name = "review_user_id",
+                            name = "positive_review_user_id",
                             referencedColumnName = "user_id"
                     )
             }
     )
-    @MapKeyColumn(name = "rating_key")
-    @Column(name = "rating_value")
-    private Map<String, Integer> ratings = new HashMap<>();
+    @MapKeyColumn(name = "positive_rating_key")
+    @Column(name = "positive_rating_value")
+    private Map<String, Boolean> positiveRatings = new HashMap<>();
+
+    @ElementCollection
+    @CollectionTable(
+            name = "negative_review_ratings",
+            joinColumns = {
+                    @JoinColumn(
+                            name = "negative_review_place_id",
+                            referencedColumnName = "place_id"
+                    ),
+                    @JoinColumn(
+                            name = "negative_review_user_id",
+                            referencedColumnName = "user_id"
+                    )
+            }
+    )
+    @MapKeyColumn(name = "negative_rating_key")
+    @Column(name = "negative_rating_value")
+    private Map<String, Boolean> negativeRatings = new HashMap<>();
 
     @Column
     private String message;
+
+    @Column
+    private Integer overallRating;
 }

@@ -9,5 +9,7 @@ public class CreateReviewTO {
     private Long id;
     private String locationName;
     private String message;
-    private Map<String, Integer> ratings;
+    private Integer overallRating;
+    private Map<String, Boolean> positiveRatings;
+    private Map<String, Boolean> negativeRatings;
 }

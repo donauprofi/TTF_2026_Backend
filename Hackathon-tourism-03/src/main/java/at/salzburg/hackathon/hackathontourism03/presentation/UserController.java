@@ -1,13 +1,11 @@
 package at.salzburg.hackathon.hackathontourism03.presentation;
 
+import at.salzburg.hackathon.hackathontourism03.presentation.transferObjects.receive.SignupTO;
 import at.salzburg.hackathon.hackathontourism03.presentation.transferObjects.response.UserTO;
 import at.salzburg.hackathon.hackathontourism03.service.logics.UserLogic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,7 +25,14 @@ public class UserController {
         return ResponseEntity.ok(result);
     }
 
-//    @PostMapping("signup") {
-//
-//    }
+    @PostMapping("signup")
+    public ResponseEntity<Void> signup(@RequestBody SignupTO user) {
+        boolean success = userLogic.signup(user);
+        if(!success) {
+            return ResponseEntity.status(400).build();
+        }
+
+        return ResponseEntity.status(201).build();
+    }
+
 }

@@ -12,8 +12,10 @@ import java.util.List;
 @NoArgsConstructor
 public class ReviewTO {
     private String place;
-    private List<AspectRatingTO> aspects;
+    private List<AspectRatingTO> positiveAspects;
+    private List<AspectRatingTO> negativeAspects;
     private String message;
     private LocalDateTime creationDate;
     private LocalDateTime lastEditedDate;
+    private Integer overallRating;
 }

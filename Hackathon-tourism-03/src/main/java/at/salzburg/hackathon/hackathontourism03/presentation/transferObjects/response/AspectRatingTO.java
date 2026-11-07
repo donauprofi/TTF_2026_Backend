@@ -10,5 +10,5 @@ import lombok.NoArgsConstructor;
 public class AspectRatingTO {
     private String aspect;
 
-    private Integer rating;
+    private Boolean ticked;
 }
