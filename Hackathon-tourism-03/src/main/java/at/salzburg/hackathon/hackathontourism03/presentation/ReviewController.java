@@ -53,4 +53,14 @@ public class ReviewController {
 
         return ResponseEntity.ok(result);
     }
+
+    @GetMapping("getNumberOfReviewsOfUser")
+    public ResponseEntity<Integer> getNumberOfReviewsOfUser(@RequestHeader Long id) {
+        Integer result = reviewLogic.getNumberOfReviewsOfUser(id);
+        if(result == null) {
+            return ResponseEntity.status(400).build();
+        }
+
+        return ResponseEntity.ok(result);
+    }
 }

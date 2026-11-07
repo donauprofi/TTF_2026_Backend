@@ -155,4 +155,14 @@ public class ReviewLogic {
 
         return result;
     }
+
+    public Integer getNumberOfReviewsOfUser(Long id) {
+        UserEntity user = userRepository.findUserById(id);
+        if(user == null) {
+            System.out.println("User with id " + id + " was not found.");
+            return null;
+        }
+
+        return user.getReviews().size();
+    }
 }
