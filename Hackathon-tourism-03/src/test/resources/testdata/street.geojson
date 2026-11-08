@@ -1,0 +1,4 @@
+{"type": "FeatureCollection", "features": [
+ {"type": "Feature", "properties": {"highway": "steps", "surface": null, "step_count": 3}, "geometry": {"type": "LineString", "coordinates": [[13.80, 47.92], [13.81, 47.93]]}},
+ {"type": "Feature", "properties": {"highway": "footway"}, "geometry": {"type": "LineString", "coordinates": [[14.50, 48.50], [14.51, 48.51]]}}
+]}

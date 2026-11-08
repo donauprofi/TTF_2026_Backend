@@ -12,7 +12,10 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest(properties = "app.data-dir=src/test/resources/testdata")
+@SpringBootTest(properties = {
+        "app.data-dir=src/test/resources/testdata",
+        "app.street-layer-file=src/test/resources/testdata/street.geojson"
+})
 @AutoConfigureMockMvc
 class LocationApiTests {
     private static final String CAFE = "/api/locations/osm:node_1";
@@ -31,6 +34,20 @@ class LocationApiTests {
                 .andExpect(jsonPath("$[0].facts[0].conflict").value(true))
                 .andExpect(jsonPath("$[0].obstacles[0]").value("wheelchair-limited"));
         mvc.perform(get("/api/locations").param("q", "GROSSE")).andExpect(jsonPath("$[0].name").value("Café Größe"));
+    }
+
+    @Test
+    void streetLayerIsFilteredCreditedAndSeparate() throws Exception {
+        mvc.perform(get("/api/street-layer").param("bbox", "13.79,47.91,13.82,47.94"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.type").value("FeatureCollection"))
+                .andExpect(jsonPath("$.features.length()").value(1))
+                .andExpect(jsonPath("$.features[0].properties.highway").value("steps"))
+                .andExpect(jsonPath("$.features[0].properties.surface").doesNotExist())
+                .andExpect(jsonPath("$.attribution").value("Street data: Hackathon Veterans, CC BY-SA 4.0. © OpenStreetMap contributors"));
+        mvc.perform(get("/api/street-layer").param("bbox", "nope")).andExpect(status().isBadRequest());
+        mvc.perform(get("/api/catalog")).andExpect(jsonPath("$.attribution.length()").value(3));
+        mvc.perform(get("/api/locations/osm:node_1")).andExpect(jsonPath("$.facts.length()").value(1));
     }
 
     @Test
