@@ -1,0 +1,2 @@
+{"attributes": [{"id": "wheelchair_access", "refresh_after_days": 365, "label": {"en": "Wheelchair access"}, "definition": {"en": "Can a wheelchair get in."}}],
+ "report_types": [{"id": "elevator_broken", "expires_after_days": 3, "label": {"en": "Lift out of service"}}]}

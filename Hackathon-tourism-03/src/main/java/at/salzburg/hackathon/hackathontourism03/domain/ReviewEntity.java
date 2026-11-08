@@ -75,7 +75,7 @@ public class ReviewEntity {
     @Column(name = "negative_rating_value")
     private Map<String, Boolean> negativeRatings = new HashMap<>();
 
-    @Column
+    @Column(length = 1000)
     private String message;
 
     @Column

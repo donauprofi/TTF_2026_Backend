@@ -4,6 +4,7 @@ import at.salzburg.hackathon.hackathontourism03.domain.PlaceEntity;
 import at.salzburg.hackathon.hackathontourism03.domain.UserEntity;
 import at.salzburg.hackathon.hackathontourism03.persistence.PlaceRepository;
 import at.salzburg.hackathon.hackathontourism03.persistence.UserRepository;
+import at.salzburg.hackathon.hackathontourism03.service.logics.LocationLogic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -22,6 +23,9 @@ public class Initializer implements ApplicationRunner {
         UserEntity user = new UserEntity();
         user.setUsername("Goofy");
         userRepository.save(user);
+        UserEntity demoUser = new UserEntity();
+        demoUser.setUsername(LocationLogic.DEMO_USERNAME);
+        userRepository.save(demoUser);
         PlaceEntity place = new PlaceEntity();
         place.setLocationName("Alterlaa");
         placeRepository.save(place);

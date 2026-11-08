@@ -1,0 +1,7 @@
+{"features": [
+ {"geometry": {"coordinates": [13.8, 47.92]}, "properties": {"id": "osm:node/1", "name": "Café Größe", "kind": "cafe", "layer": "poi",
+  "address": {"street": "Seestraße", "housenumber": "4", "city": "Gmunden"}, "contact": {},
+  "facts": [{"attribute": "wheelchair_access", "value": "no", "source": "crawl", "observed_at": "2026-10-01"},
+            {"attribute": "wheelchair_access", "value": "limited", "source": "osm", "observed_at": "2026-01-01"}]}},
+ {"geometry": {"coordinates": [13.8, 47.92]}, "properties": {"id": "osm:node/2", "name": "Kerb", "kind": "crossing", "layer": "infrastructure", "facts": []}}
+]}
